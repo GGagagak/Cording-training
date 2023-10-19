@@ -1,0 +1,36 @@
+package Shixiwenti8;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+public class OoO8 {
+
+	public static void main(String[] args) {
+
+		File a;
+		File sub []; // 파일리스트 변수 생성
+
+		try {
+			a = new File("C:\\"); // 모든 파일들을 비교 -> listFiles 메소드 사용 
+			sub = a.listFiles();
+
+			long max = -1;
+			int maxi = -1; // 제일 큰 파일의 순서를 알아내기 위한 변수
+
+			for (int i = 0; i < sub.length; i++) {
+				if (max < sub[i].length()) {
+					max = sub[i].length();
+					maxi = i;
+				}
+			}
+			System.out.println("가장 큰 파일은 " + sub[maxi].getPath() + "	" + sub[maxi].length() + "바이트");
+
+		} catch (Exception e) {
+			System.out.println("경로 설정이 이상한데?");
+
+		}
+
+	}
+
+}
