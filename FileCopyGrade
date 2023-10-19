@@ -1,0 +1,49 @@
+package shixiwenti7;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class OoO7 {
+
+	public static void main(String[] args) {
+		File a;
+		File b;
+		FileInputStream In1;
+		FileOutputStream Out1;
+		long n;
+		long total;
+		try {
+			a = new File("c:\\temp\\Joyo.png"); // 복사할 파일
+			b = new File("c:\\temp\\copy.png"); // 복사 받을 공간
+
+			System.out.println(a.getName() + "를 " + b.getName() + "로 복사합니다."); // 파일클래스변수.getName() 은 파일이름불러오기
+
+			In1 = new FileInputStream(a); // 파일클래스 a를 받는다
+			Out1 = new FileOutputStream(b); // 파일클래스b의 경로와 파일 이름으로 복사한다.
+
+			int c;
+			n = 0;
+			total = a.length();
+			System.out.println("===================");
+			System.out.println(total);
+			while ((c = In1.read()) != -1) {
+				Out1.write((char) c);
+				n = (n + 1); //
+				if (n == total / 10) { // (전체를 10으로 나눠준수)와 (계속 더해져서 문자하나가 더해질때마다 값이 1증가하는 n값)이 같아질때마다
+										// 그니까 전체를 10으로 나눠줬으니 그 10으로 나눈 수가 10번 더해졌을때 100%값이 나오므로
+										// 10나눠준 수가 10%값이 맞기때문에 ==> 수식 이해되어야함!
+					System.out.print("*");
+					n = 0; // 0으로 초기화.
+				}
+			}
+			In1.close();
+			Out1.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
