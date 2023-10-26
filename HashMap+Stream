@@ -1,0 +1,61 @@
+package shixiwenti;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Java8Of10 {
+
+	public static void main(String[] args) {
+
+		File f = null;
+		FileReader src = null;
+		Scanner sc;
+		Map<String, String> phone;
+		int c;
+		int C;
+
+		try {
+			phone = new HashMap<String, String>();
+			f = new File("C:\\Temp\\Java\\phone.txt");
+			src = new FileReader(f);
+			sc = new Scanner(src); // 파일리더를 스캔해서 읽는다.
+
+			while (sc.hasNext()) { // sc 한줄씩 끝까지 인식
+				String n = sc.next(); // 띄어쓰기 전까지의 문자열 인식
+				String k = sc.next(); // 띄어쓴 후 문자열 인식
+
+				phone.put(n, k); // 해시맵에 저장시키기
+				System.out.println("key:" + n + "value:" + phone.get(n));
+
+			}
+			System.out.println("총 " + phone.size() + "개의 전화번호를 읽었습니다."); // phone.size()로 HashMap에 등록된 번호 갯수 확인
+			sc.close();
+			sc = new Scanner(System.in);
+			String temp = "";
+			while (true) {
+				System.out.print("이름>>");
+				temp = sc.next(); // key입력
+				System.out.println(temp); // key 그대로 입력
+
+				if (temp.equals("그만")) {
+					break;
+				}
+				String tel = phone.get(temp); // key에대한 value(값) 를 tel에 대입
+				if (tel == null) { // value 가 존재하지 않는다면
+					System.out.println("찾는 이름이 없습니다.");
+				} else {
+					System.out.println(tel);
+				}
+
+			}
+
+		} catch (IOException e) {
+
+		}
+
+	}
+}
